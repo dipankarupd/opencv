@@ -14,7 +14,7 @@ def rotate_3d_cube(img, angle):
                          [-1, 1, 1]], dtype=np.float32)
 
     # Rotation matrix around the X-axis
-    rotation_matrix = np.array([[1, 0, 0],
+    rotation_matrix = np.array([[1,0,0],
                                 [0, math.cos(angle), -math.sin(angle)],
                                 [0, math.sin(angle), math.cos(angle)]], dtype=np.float32)
 

@@ -72,7 +72,7 @@ while True:
     cv2.imshow("Rotating 3D Cube", image)
 
     # Wait for a moment and update the angles
-    key = cv2.waitKey(30)
+    key = cv2.waitKey(10)
     if key == ord('q'):
         break
 

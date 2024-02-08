@@ -3,6 +3,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 import math
 
+# draw an ellipse with centre at cx and cy
 def circle(rx, ry, cx, cy):
     glBegin(GL_POLYGON)
     glVertex2f(cx, cy)
@@ -22,7 +23,14 @@ shift = 0
 
 def clouds():
     global bx
+    
+    
+    # current transformation matrix to the matrix stack. 
+    # This is done to isolate the transformations applied within this function.
     glPushMatrix()
+    
+    # Translates the current coordinate system by the value of bx along the x-axis. 
+    # This effectively moves the entire cloud horizontally.
     glTranslatef(bx, 0, 0)
 
     # 1st cloud
@@ -36,15 +44,22 @@ def clouds():
     circle(15, 20, 405, 420)
     circle(15, 20, 375, 420)
 
+    # restore the trans matrix
     glPopMatrix()
+    
+    # update the cloud position
     bx += 0.05
     if bx > 0:
         bx = -500
+        
+    # redisplay after the cloud disappear from the screen
     glutPostRedisplay()
 
 def display():
     global shift
     glClear(GL_COLOR_BUFFER_BIT)
+    
+    # river design
 
     # River Color
     glColor3ub(0, 191, 255)
@@ -55,6 +70,7 @@ def display():
     glVertex2d(0, 300)
     glEnd()
 
+
     # Sun design
     glColor3ub(255, 215, 0)
     circle(25, 30, 175, 450)
@@ -64,6 +80,8 @@ def display():
     global bx
     glPushMatrix()
     glTranslatef(bx, 0, 0)
+    
+    
     # Boat design
     glColor3ub(0, 0, 0)
     glBegin(GL_POLYGON)

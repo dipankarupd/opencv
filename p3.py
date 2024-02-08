@@ -55,8 +55,10 @@ while True:
                          [-1, 1, 1]], dtype=np.float32)
 
     # Scale the cube vertices
+    # adjust vertices based on the cube size
     scaled_vertices = vertices * (cube_size / 100)
 
+    # The matrix is designed to perform a rotation in the XY plane (around the z-axis).
     rotation_matrix = np.array([[math.cos(angle), -math.sin(angle), 0],
                                 [math.sin(angle), math.cos(angle), 0],
                                 [0, 1, 1]], dtype=np.float32)
@@ -65,6 +67,9 @@ while True:
     rotated_vertices = np.dot(scaled_vertices, rotation_matrix)
 
     # Project the 3D points to 2D
+    # cut the z axis 
+    # multiply cube size
+    # add offset of 200 200 for adjusting into the screen
     projected_vertices = (rotated_vertices[:, :2] * cube_size + np.array([200, 200])).astype(int)
 
     # Create a black image
